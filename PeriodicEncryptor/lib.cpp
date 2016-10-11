@@ -29,7 +29,7 @@ void PointsGenerator::generatePoints() {
 	std::sort(begin, end);	
 }
 
-std::vector<int> PointsGenerator::getPoints() {
+const std::vector<int> & PointsGenerator::getPoints() {
 	return this->_points;
 }
 
@@ -41,37 +41,36 @@ Encryptor::Encryptor(std::string m, int numberOfPoints)
 	this->_keys = this->_generateKeys();
 }
 
+void Encryptor::_encdec(std::vector<unsigned char> & inputContainer, std::vector<unsigned char> & outputContainer) {
+	outputContainer.clear();
+	int length = inputContainer.size();
+	std::vector<int> points = this->getPoints();
+	int currInterval = 0;
+	bool lastInterval = false;
+	std::vector<unsigned char> currKey = this->_keys[currInterval];
+	for (int i = 0; i < length; i++)
+	{
+		if (!lastInterval)
+			if (i > points[currInterval]) {
+				currKey = this->_keys[++currInterval];
+				lastInterval = currInterval == points.size();
+			};
+		outputContainer.push_back(inputContainer[i] ^ currKey[i]);
+	}
+}
+
 void Encryptor::performEncryption() {
-	this->_cipherText.clear();
-	int messageLength = this->_message.size();
-	std::vector<int> points = this->getPoints();
-	int currInterval = 0;
-	std::vector<unsigned char> currKey = this->_keys[currInterval];
-	for (int i = 0; i < messageLength; i++)
-	{
-		if (i > points[currInterval]) 
-			currKey = this->_keys[++currInterval];
-		this->_cipherText.push_back(this->_message[i] ^ currKey[i]);
-	}
+	std::vector<unsigned char> messageVec(this->_message.begin(), this->_message.end());
+	this->_encdec(messageVec, this->_cipherText);
 }
 
-//just decrypton. for reasons of tests
 std::string Encryptor::getDecryptedMessage() {	
-	std::string decryptedMessage;
-	int messageLength = this->_cipherText.size();
-	std::vector<int> points = this->getPoints();
-	int currInterval = 0;
-	std::vector<unsigned char> currKey = this->_keys[currInterval];
-	for (int i = 0; i < messageLength; i++)
-	{
-		if (i > points[currInterval])
-			currKey = this->_keys[++currInterval];
-		decryptedMessage.push_back(this->_cipherText[i] ^ currKey[i]);
-	}
-	return decryptedMessage;
+	std::vector<unsigned char> decryptedVec;
+	this->_encdec(this->_cipherText, decryptedVec);
+	return std::string(decryptedVec.begin(), decryptedVec.end());
 }
 
-std::vector<unsigned char> Encryptor::getCipherText() {
+const std::vector<unsigned char> & Encryptor::getCipherText() {
 	return this->_cipherText;
 }
 
@@ -91,10 +90,10 @@ std::vector<std::vector<unsigned char>> Encryptor::_generateKeys() {
 	return keys;
 }
 
-std::vector<std::vector<unsigned char>> Encryptor::getKeys() {
+const std::vector<std::vector<unsigned char>> & Encryptor::getKeys() {
 	return this->_keys;
 }
 
-std::vector<int> Encryptor::getPoints() {
+const std::vector<int>& Encryptor::getPoints() {
 	return this->_pg->getPoints();
 }

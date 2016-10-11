@@ -1,6 +1,14 @@
-﻿Сборка начата 09.10.2016 20:21:29.
+﻿Сборка начата 11.10.2016 7:34:51.
      1>Проект "C:\Учеба\С++\PeriodicEncryptor\PeriodicEncryptor\PeriodicEncryptor.vcxproj" в узле 2 (целевые объекты Build).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt enc.cpp lib.cpp
+         lib.cpp
+     1>c:\учеба\с++\periodicencryptor\periodicencryptor\lib.cpp(11): warning C4244: инициализация: преобразование "std::chrono::system_clock::rep" в "unsigned int", возможна потеря данных
+     1>c:\учеба\с++\periodicencryptor\periodicencryptor\lib.cpp(79): warning C4244: инициализация: преобразование "std::chrono::system_clock::rep" в "unsigned int", возможна потеря данных
+         Создание кода...
+         Пропуск... (изменения не обнаружены)
+         enc.cpp
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Учеба\С++\PeriodicEncryptor\Debug\PeriodicEncryptor.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Учеба\С++\PeriodicEncryptor\Debug\PeriodicEncryptor.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Учеба\С++\PeriodicEncryptor\Debug\PeriodicEncryptor.lib" /MACHINE:X86 Debug\enc.obj
          Debug\lib.obj
          PeriodicEncryptor.vcxproj -> C:\Учеба\С++\PeriodicEncryptor\Debug\PeriodicEncryptor.exe
@@ -8,4 +16,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:00.30
+Затраченное время: 00:00:02.10

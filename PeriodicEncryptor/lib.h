@@ -17,7 +17,7 @@ public:
 	PointsGenerator(int count, int bound);
 	~PointsGenerator() {};
 	void generatePoints();
-	std::vector<int> getPoints();
+	const std::vector<int> & getPoints();
 };
 
 class Encryptor
@@ -29,12 +29,13 @@ private:
 	PointsGenerator* _pg;
 	std::vector<std::vector<unsigned char>> _generateKeys();
 	std::vector<unsigned char> _generateKey();
+	void _encdec(std::vector<unsigned char> & inputContainer, std::vector<unsigned char> & outputContainer);
 public:
 	Encryptor(std::string m, int numberOfPoints);
 	~Encryptor() { delete this->_pg;};
-	std::vector<std::vector<unsigned char>> getKeys();
-	std::vector<unsigned char> getCipherText();
-	std::vector<int> getPoints();
+	const std::vector<std::vector<unsigned char>> & getKeys();
+	const std::vector<unsigned char> &  getCipherText();
+	const std::vector<int> & getPoints();
 	void performEncryption();
 	std::string getDecryptedMessage();
 };

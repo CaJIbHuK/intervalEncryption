@@ -31,6 +31,10 @@ int main(int argc, char *argv[]) {
 
 	Encryptor encryptor(message, NUMBER_OF_POINTS);
 	encryptor.performEncryption();
+	for (auto it = encryptor.getCipherText().begin(); it < encryptor.getCipherText().end(); it++)
+	{
+		std::cout << (*it);
+	}
 	std::string decryptedMessage = encryptor.getDecryptedMessage();
 	for (auto it = decryptedMessage.begin(); it < decryptedMessage.end(); it++)
 	{
