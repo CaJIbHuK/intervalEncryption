@@ -97,3 +97,5 @@ const std::vector<std::vector<unsigned char>> & Encryptor::getKeys() {
 const std::vector<int>& Encryptor::getPoints() {
 	return this->_pg->getPoints();
 }
+
+//----------------------Analyzer--------------------

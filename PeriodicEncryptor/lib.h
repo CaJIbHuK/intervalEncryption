@@ -7,6 +7,7 @@
 #include <chrono>
 #include <fstream>
 #include <exception>
+#include <tuple>
 
 class PointsGenerator {
 private:
@@ -40,3 +41,14 @@ public:
 	std::string getDecryptedMessage();
 };
 
+class Analyzer {
+private:
+	Encryptor* _encryptor;
+	std::vector<unsigned char> _result;
+	std::vector<std::tuple<int, int, std::vector<unsigned char>&>> _periodsOfOverlap;
+	std::vector<std::vector<unsigned char>> _cipherTexts;
+public:
+	Analyzer(Encryptor& encryptor) { this->_encryptor = &encryptor; };
+	~Analyzer() { delete this->_encryptor; };
+	
+};
